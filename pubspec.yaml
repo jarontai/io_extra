@@ -1,0 +1,8 @@
+name: io_extra
+description: Extra io utilities for dartlang. Copy, Move, Walk, etc.
+author: Jaron Tai <jaroncn@gmail.com>
+homepage: https://github.com/jarontai/io_extra
+dependencies:
+  path: "^1.3.6"
+dev_dependencies:
+  test: "^0.12.3+9"
