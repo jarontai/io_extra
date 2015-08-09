@@ -19,13 +19,33 @@ void main() {
     targetFolder = new Directory(path.join(rootFolder.path, 'target'))..createSync();
   });
 
-  test('Testing copy file to file', () {
+  test('Testing copySync: file to file', () {
     File targeFile = copySync(sourceFile.path, path.join(rootFolder.path, 'target.md'));
     expect(sourceFile.readAsStringSync(), equals(targeFile.readAsStringSync()));
   });
 
-  test('Testing copy file to folder', () {
+  test('Testing copySync: file to folder', () {
     File targeFile = copySync(sourceFile.path, targetFolder.path);
     expect(sourceFile.readAsStringSync(), equals(targeFile.readAsStringSync()));
   });
+
+  // test('Testing copySync(target folder does not exists): file to file', () {
+  //   File targeFile = copySync(sourceFile.path, path.join(rootFolder.path, 'target.md'));
+  //   expect(sourceFile.readAsStringSync(), equals(targeFile.readAsStringSync()));
+  // });
+  //
+  // test('Testing copySync(target folder does not exists): file to folder', () {
+  //   File targeFile = copySync(sourceFile.path, targetFolder.path);
+  //   expect(sourceFile.readAsStringSync(), equals(targeFile.readAsStringSync()));
+  // });
+  //
+  // test('Testing copySync: folder to folder', () {
+  //   File targeFile = copySync(sourceFile.path, targetFolder.path);
+  //   expect(sourceFile.readAsStringSync(), equals(targeFile.readAsStringSync()));
+  // });
+  //
+  // test('Testing copySync(target folder does not exists): folder to folder', () {
+  //   File targeFile = copySync(sourceFile.path, path.join(rootFolder.path, 'target.md'));
+  //   expect(sourceFile.readAsStringSync(), equals(targeFile.readAsStringSync()));
+  // });
 }
