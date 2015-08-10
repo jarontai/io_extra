@@ -18,7 +18,14 @@ bool _checkFolder(String target) {
 // Check the target is a file or not
 bool _checkFile(String target) => (path.extension(target) != '') ? true : false;
 
-Future<FileSystemEntity> copy(String source, String target, [bool recursive = false]) async {
+/// Copy the source to target. Recursively.
+///
+/// Support:
+///     File -> File
+///     File -> Folder
+///     Folder -> Folder
+///
+Future<FileSystemEntity> copy(String source, String target) async {
   FileSystemEntityType sourceType = await FileSystemEntity.type(source);
   if (sourceType == FileSystemEntityType.NOT_FOUND || sourceType == FileSystemEntityType.LINK) {
     return null;
@@ -66,7 +73,14 @@ Future<FileSystemEntity> copy(String source, String target, [bool recursive = fa
   return null;
 }
 
-FileSystemEntity copySync(String source, String target, [bool recursive = false]) {
+/// Copy the source to target. Recursively, synchronously.
+///
+/// Support:
+///     File -> File
+///     File -> Folder
+///     Folder -> Folder
+///
+FileSystemEntity copySync(String source, String target) {
   FileSystemEntityType sourceType = FileSystemEntity.typeSync(source);
   if (sourceType == FileSystemEntityType.NOT_FOUND || sourceType == FileSystemEntityType.LINK) {
     return null;
@@ -99,16 +113,12 @@ FileSystemEntity copySync(String source, String target, [bool recursive = false]
 
       Directory sourceRootDir = new Directory(source);
       String relPath;
-      File sourceFile;
-      Directory sourceDir;
       sourceRootDir.listSync().forEach((FileSystemEntity entity) {
         if (entity is File) {
-          sourceFile = entity as File;
-          relPath =  path.relative(sourceFile.path, from: sourceRootDir.path);
-          sourceFile.copySync(path.join(targetRootDir.path, relPath));
+          relPath =  path.relative(entity.path, from: sourceRootDir.path);
+          entity.copySync(path.join(targetRootDir.path, relPath));
         } else if (entity is Directory) {
-          sourceDir = entity as Directory;
-          relPath = path.relative(sourceDir.path, from: sourceRootDir.path);
+          relPath = path.relative(entity.path, from: sourceRootDir.path);
           new Directory(path.join(targetRootDir.path, relPath)).createSync();
         }
       });
