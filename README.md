@@ -15,12 +15,12 @@ Work in progress. Check the [dev](https://github.com/jarontai/io_extra/tree/deve
     import 'package:io_extra/io_extra.dart' as extra;
 
     main() async {
-      // File <-> File
+      // File -> File
       extra.copySync('README.md', path.join('targetFolder', 'target.md'));
 
-      // File <-> Folder
+      // File -> Folder
       File copiedFile = await extra.copy('README.md', path.join('basePath', 'targetFolder'));
 
-      // Folder <-> Folder
+      // Folder -> Folder
       extra.copySync('sourceFolder', path.join('basePath', 'not_exists_folder'));
     }
