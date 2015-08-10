@@ -10,6 +10,12 @@ Work in progress. Check the [dev](https://github.com/jarontai/io_extra/tree/deve
     import 'package:path/path.dart' as path;
 
     main() {
-      copySync('README.md', path.join(Platform.packageRoot, 'not_exists_folder1', 'target.md'));
-      copySync('someFolder', path.join(Platform.packageRoot, 'not_exists_folder2'));
+      // File <-> File
+      copySync('README.md', path.join('targetFolder', 'target.md'));
+
+      // File <-> Folder
+      copySync('README.md', path.join('targetFolder'));
+
+      // Folder <-> Folder
+      copySync('sourceFolder', path.join('yourBasePath', 'not_exists_target_folder'));
     }
