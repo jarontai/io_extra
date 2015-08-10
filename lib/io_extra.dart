@@ -51,16 +51,12 @@ Future<FileSystemEntity> copy(String source, String target, [bool recursive = fa
 
       Directory sourceRootDir = new Directory(source);
       String relPath;
-      File sourceFile;
-      Directory sourceDir;
       await for (FileSystemEntity entity in sourceRootDir.list()) {
         if (entity is File) {
-          sourceFile = entity as File;
-          relPath =  path.relative(sourceFile.path, from: sourceRootDir.path);
-          await sourceFile.copy(path.join(targetRootDir.path, relPath));
+          relPath =  path.relative(entity.path, from: sourceRootDir.path);
+          await entity.copy(path.join(targetRootDir.path, relPath));
         } else if (entity is Directory) {
-          sourceDir = entity as Directory;
-          relPath = path.relative(sourceDir.path, from: sourceRootDir.path);
+          relPath = path.relative(entity.path, from: sourceRootDir.path);
           await new Directory(path.join(targetRootDir.path, relPath)).create();
         }
       }
