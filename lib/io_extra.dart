@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:path/path.dart' as path;
 
 Future<FileSystemEntity> copy(String source, String target, [bool recursive = true]) {
-
+  // TODO
 }
 
 FileSystemEntity copySync(String source, String target, [bool recursive = true]) {
@@ -42,6 +42,10 @@ FileSystemEntity copySync(String source, String target, [bool recursive = true])
   return null;
 }
 
+Future<Directory> makeDir(String folder, [bool recursive = true]) {
+  // TODO
+}
+
 Directory makeDirSync(String folder, [bool recursive = true]) {
   List<String> pathList = path.split(folder);
   String fullPath;
@@ -59,8 +63,4 @@ Directory makeDirSync(String folder, [bool recursive = true]) {
     }
   });
   return new Directory(folder);
-}
-
-void main() {
-
 }
