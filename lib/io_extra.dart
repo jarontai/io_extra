@@ -19,12 +19,13 @@ FileSystemEntity copySync(String source, String target, [bool recursive = true])
   if (sourceType == FileSystemEntityType.FILE) {
     String sourceFileName = path.basename(source);
     String targetFileName = path.basename(target);
-    if (targetType == FileSystemEntityType.FILE) {
+
+    if (targetType == FileSystemEntityType.FILE) {  // File to file
       return new File(source).copySync(target);
-    } else if (targetType == FileSystemEntityType.DIRECTORY) {
+    } else if (targetType == FileSystemEntityType.DIRECTORY) {  // File to folder
       target = path.join(target, sourceFileName);
       return new File(source).copySync(target);
-    } else if (targetType == FileSystemEntityType.NOT_FOUND) {
+    } else if (targetType == FileSystemEntityType.NOT_FOUND) {  // Target not found
       String ext = path.extension(target);
       int index = target.indexOf('.');
 
@@ -42,7 +43,22 @@ FileSystemEntity copySync(String source, String target, [bool recursive = true])
 }
 
 Directory makeDirSync(String folder, [bool recursive = true]) {
+  List<String> pathList = path.split(folder);
+  String fullPath;
+  Directory dir;
+  pathList.forEach((currentPath) {
+    if (fullPath == null) {
+      fullPath = path.join(currentPath);
+    } else {
+      fullPath = path.join(fullPath, currentPath);
+    }
 
+    dir = new Directory(fullPath);
+    if (!dir.existsSync()) {
+      dir.createSync();
+    }
+  });
+  return new Directory(folder);
 }
 
 void main() {
