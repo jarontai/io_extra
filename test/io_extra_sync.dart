@@ -6,7 +6,7 @@ import 'package:path/path.dart' as path;
 
 void main() {
   var rootFolder = new Directory(path.join(Platform.packageRoot, 'playground'));
-  File sourceFile, sourceFile2;
+  File sourceFile, targetFile;
   Directory targetFolder, sourceFolder;
 
   bootstrap() {
@@ -18,7 +18,10 @@ void main() {
     sourceFile = new File(path.join(Platform.packageRoot, 'README.md')).copySync(path.join(rootFolder.path, 'source1.md'));
     targetFolder = new Directory(path.join(rootFolder.path, 'target'))..createSync();
     sourceFolder = new Directory(path.join(rootFolder.path, 'source'))..createSync();
-    sourceFile2 = new File(path.join(Platform.packageRoot, 'README.md')).copySync(path.join(sourceFolder.path, 'source2.md'));
+    var sourceFolder2 = new Directory(path.join(sourceFolder.path, 'in_source'))..createSync();
+    var readme = new File(path.join(Platform.packageRoot, 'README.md'));
+    targetFile = readme.copySync(path.join(sourceFolder.path, 'target.md'));
+    readme.copy(path.join(sourceFolder2.path, 'target2.md'));
   }
 
   setUp(bootstrap);
@@ -30,7 +33,7 @@ void main() {
   });
 
   test('Testing copySync: file to file (target exists)', () {
-    File targeFile = copySync(sourceFile.path, sourceFile2.path);
+    File targeFile = copySync(sourceFile.path, targetFile.path);
     String sourceStr = sourceFile.readAsStringSync();
     expect(sourceStr, equals(targeFile.readAsStringSync()));
   });
