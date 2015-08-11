@@ -1,6 +1,6 @@
 name: io_extra
 description: Extra io utilities for dartlang. Copy, Move, etc.
-version: 0.0.3
+version: 0.0.3+1
 author: Jaron Tai <jaroncn@gmail.com>
 homepage: https://github.com/jarontai/io_extra
 environment:

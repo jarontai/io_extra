@@ -7,7 +7,7 @@ import 'package:path/path.dart' as path;
 void main() {
   var rootFolder = new Directory(path.join(Platform.packageRoot, 'playground'));
   File sourceFile, sourceFile2;
-  Directory targetFolder, targetFolder2;
+  Directory targetFolder, sourceFolder;
 
   bootstrap() {
     if (rootFolder.existsSync()) {
@@ -17,8 +17,8 @@ void main() {
 
     sourceFile = new File(path.join(Platform.packageRoot, 'README.md')).copySync(path.join(rootFolder.path, 'source1.md'));
     targetFolder = new Directory(path.join(rootFolder.path, 'target'))..createSync();
-    targetFolder2 = new Directory(path.join(rootFolder.path, 'target2'))..createSync();
-    sourceFile2 = new File(path.join(Platform.packageRoot, 'README.md')).copySync(path.join(targetFolder2.path, 'source2.md'));
+    sourceFolder = new Directory(path.join(rootFolder.path, 'source'))..createSync();
+    sourceFile2 = new File(path.join(Platform.packageRoot, 'README.md')).copySync(path.join(sourceFolder.path, 'source2.md'));
   }
 
   setUp(bootstrap);
@@ -54,16 +54,16 @@ void main() {
   });
 
   test('Testing copySync: folder to folder', () {
-    Directory copiedFolder = copySync(targetFolder2.path, targetFolder.path);
+    Directory copiedFolder = copySync(sourceFolder.path, targetFolder.path);
     List copiedList = copiedFolder.listSync();
-    expect(copiedList.length, equals(targetFolder2.listSync().length));
-    expect(path.basename(copiedFolder.path), equals(path.basename(targetFolder2.path)));
+    expect(copiedList.length, equals(sourceFolder.listSync().length));
+    expect(path.basename(copiedFolder.path), equals(path.basename(sourceFolder.path)));
   });
 
   test('Testing copySync: folder to folder (target folder not exists)', () {
-    Directory copiedFolder = copySync(targetFolder2.path, path.join(targetFolder.path, 'not_exists_folder1', 'not_exists_folder2'));
+    Directory copiedFolder = copySync(sourceFolder.path, path.join(targetFolder.path, 'not_exists_folder1', 'not_exists_folder2'));
     List copiedList = copiedFolder.listSync();
-    expect(copiedList.length, equals(targetFolder2.listSync().length));
-    expect(path.basename(copiedFolder.path), equals(path.basename(targetFolder2.path)));
+    expect(copiedList.length, equals(sourceFolder.listSync().length));
+    expect(path.basename(copiedFolder.path), equals(path.basename(sourceFolder.path)));
   });
 }

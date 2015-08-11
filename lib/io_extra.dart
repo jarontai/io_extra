@@ -58,7 +58,7 @@ Future<FileSystemEntity> copy(String source, String target) async {
 
       Directory sourceRootDir = new Directory(source);
       String relPath;
-      await for (FileSystemEntity entity in sourceRootDir.list()) {
+      await for (FileSystemEntity entity in sourceRootDir.list(recursive: true, followLinks: false)) {
         if (entity is File) {
           relPath =  path.relative(entity.path, from: sourceRootDir.path);
           await entity.copy(path.join(targetRootDir.path, relPath));
@@ -113,7 +113,7 @@ FileSystemEntity copySync(String source, String target) {
 
       Directory sourceRootDir = new Directory(source);
       String relPath;
-      sourceRootDir.listSync().forEach((FileSystemEntity entity) {
+      sourceRootDir.listSync(recursive: true, followLinks: false).forEach((FileSystemEntity entity) {
         if (entity is File) {
           relPath =  path.relative(entity.path, from: sourceRootDir.path);
           entity.copySync(path.join(targetRootDir.path, relPath));
