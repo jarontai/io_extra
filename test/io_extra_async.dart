@@ -28,33 +28,33 @@ void main() {
   setUp(bootstrap);
 
   test('Testing copy: file to file (target not exists)', () async {
-    File targeFile = await copy(sourceFile.path, path.join(rootFolder.path, 'target.md'));
+    File copiedFile = await copy(sourceFile.path, path.join(rootFolder.path, 'target.md'));
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copy: file to file (target exists)', () async {
-    File targeFile = await copy(sourceFile.path, targetFile.path);
+    File copiedFile = await copy(sourceFile.path, targetFile.path);
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copy: file to folder', () async {
-    File targeFile = await copy(sourceFile.path, targetFolder.path);
+    File copiedFile = await copy(sourceFile.path, targetFolder.path);
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copy: file to file (target folder not exists)', () async {
-    File targeFile = await copy(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'target.md'));
+    File copiedFile = await copy(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'target.md'));
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copy: file to folder (target folder not exists)', () async {
-    File targeFile = await copy(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'not_exists_folder3'));
+    File copiedFile = await copy(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'not_exists_folder3'));
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copy: folder to folder', () async {

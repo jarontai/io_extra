@@ -27,33 +27,33 @@ void main() {
   setUp(bootstrap);
 
   test('Testing copySync: file to file (target not exists)', () {
-    File targeFile = copySync(sourceFile.path, path.join(rootFolder.path, 'target.md'));
+    File copiedFile = copySync(sourceFile.path, path.join(rootFolder.path, 'target.md'));
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copySync: file to file (target exists)', () {
-    File targeFile = copySync(sourceFile.path, targetFile.path);
+    File copiedFile = copySync(sourceFile.path, targetFile.path);
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copySync: file to folder', () {
-    File targeFile = copySync(sourceFile.path, targetFolder.path);
+    File copiedFile = copySync(sourceFile.path, targetFolder.path);
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copySync: file to file (target folder not exists)', () {
-    File targeFile = copySync(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'target.md'));
+    File copiedFile = copySync(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'target.md'));
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copySync: file to folder (target folder not exists)', () {
-    File targeFile = copySync(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'not_exists_folder3'));
+    File copiedFile = copySync(sourceFile.path, path.join(rootFolder.path, 'not_exists_folder1', 'not_exists_folder2', 'not_exists_folder3'));
     String sourceStr = sourceFile.readAsStringSync();
-    expect(sourceStr, equals(targeFile.readAsStringSync()));
+    expect(sourceStr, equals(copiedFile.readAsStringSync()));
   });
 
   test('Testing copySync: folder to folder', () {
