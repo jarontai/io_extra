@@ -5,7 +5,7 @@ import 'dart:async';
 
 import 'package:path/path.dart' as path;
 
-// Check the target is a folder or not
+// Check whether the target is a folder or not
 bool _checkFolder(String target) {
   String ext = path.extension(target);
   int index = target.indexOf('.');
@@ -15,7 +15,7 @@ bool _checkFolder(String target) {
   return false;
 }
 
-// Check the target is a file or not
+// Check whether the target is a file or not
 bool _checkFile(String target) => (path.extension(target) != '') ? true : false;
 
 /// Copy the source to target. Recursively.
