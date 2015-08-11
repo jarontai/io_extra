@@ -56,15 +56,15 @@ void main() {
 
   test('Testing copy: folder to folder', () async {
     Directory copiedFolder = await copy(sourceFolder.path, targetFolder.path);
-    List copiedList = copiedFolder.listSync();
-    expect(copiedList.length, equals(sourceFolder.listSync().length));
+    List copiedList = copiedFolder.listSync(recursive: true, followLinks: false);
+    expect(copiedList.length, equals(sourceFolder.listSync(recursive: true, followLinks: false).length));
     expect(path.basename(copiedFolder.path), equals(path.basename(sourceFolder.path)));
   });
 
   test('Testing copy: folder to folder (target folder not exists)', () async {
     Directory copiedFolder = await copy(sourceFolder.path, path.join(targetFolder.path, 'not_exists_folder1', 'not_exists_folder2'));
-    List copiedList = copiedFolder.listSync();
-    expect(copiedList.length, equals(sourceFolder.listSync().length));
+    List copiedList = copiedFolder.listSync(recursive: true, followLinks: false);
+    expect(copiedList.length, equals(sourceFolder.listSync(recursive: true, followLinks: false).length));
     expect(path.basename(copiedFolder.path), equals(path.basename(sourceFolder.path)));
   });
 }

@@ -1,7 +1,7 @@
 # io_extra
 Extra io utilities for [dartlang](http://dartlang.org/). Copy, Move, etc.
 
-Work in progress. Check the [dev](https://github.com/jarontai/io_extra/tree/develop) branch to see the newest commits.
+More features are on the way. Check the [dev](https://github.com/jarontai/io_extra/tree/develop) branch to see the newest commits.
 
 ### Important
 - All links are skipped.
