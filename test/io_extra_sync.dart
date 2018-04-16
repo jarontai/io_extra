@@ -5,7 +5,7 @@ import 'package:io_extra/io_extra.dart';
 import 'package:path/path.dart' as path;
 
 void main() {
-  var rootFolder = new Directory(path.join(Platform.packageRoot, 'playground'));
+  var rootFolder = new Directory('playground');
   File sourceFile, targetFile;
   Directory targetFolder, sourceFolder;
 
@@ -15,11 +15,11 @@ void main() {
     }
     rootFolder.createSync();
 
-    sourceFile = new File(path.join(Platform.packageRoot, 'README.md')).copySync(path.join(rootFolder.path, 'source1.md'));
+    sourceFile = new File('README.md').copySync(path.join(rootFolder.path, 'source1.md'));
     targetFolder = new Directory(path.join(rootFolder.path, 'target'))..createSync();
     sourceFolder = new Directory(path.join(rootFolder.path, 'source'))..createSync();
     var sourceFolder2 = new Directory(path.join(sourceFolder.path, 'in_source'))..createSync();
-    var readme = new File(path.join(Platform.packageRoot, 'README.md'));
+    var readme = new File('README.md');
     targetFile = readme.copySync(path.join(sourceFolder.path, 'target.md'));
     readme.copy(path.join(sourceFolder2.path, 'target2.md'));
   }

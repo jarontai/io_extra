@@ -7,3 +7,4 @@ Thumbs.db
 packages
 pubspec.lock
 playground
+.dart_tool/

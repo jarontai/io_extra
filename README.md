@@ -19,7 +19,7 @@ More features are on the way. Check the [dev](https://github.com/jarontai/io_ext
       extra.copySync('README.md', path.join('targetFolder', 'target.md'));
 
       // File -> Folder
-      File copiedFile = await extra.copy('README.md', path.join('basePath', 'targetFolder'));
+      await extra.copy('README.md', path.join('basePath', 'targetFolder'));
 
       // Folder -> Folder
       extra.copySync('sourceFolder', path.join('basePath', 'not_exists_folder'));
